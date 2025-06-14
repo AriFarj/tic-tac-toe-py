@@ -13,32 +13,49 @@ def print_board(cell_list):
         )
 
 
-
 def input_cell(cell_list):
-    sample_cells = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    print_board(sample_cells)
+    # sample_cells = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    # print_board(sample_cells)
     cell = int(input("State row number 1-9: \n")) - 1
-    sign = (input("state sign (x\\o): \n")).upper()
-    cell_list[cell] = sign
+    if cell_list[cell] == " ":
+        sign = (input("state sign (x\\o): \n")).upper()
+        cell_list[cell] = sign
+    else:
+        print("That cell is already taken! Try again")
     return cell_list
 
 
-cells = create_cells()
-# cells[0] = "1"
-# cells[1] = "2"
-# cells[2] = "3"
-# cells[3] = "4"
-# cells[4] = "5"
-# cells[5] = "6"
-# cells[6] = "7"
-# cells[7] = "8"
-# cells[8] = "9"
+def check_marks(a, b, c):
+    return a == b and b == c
 
-# print_board(cells)
-# input_cell(cells)
-# print_board(cells)
+
+def check_if_game_over():
+    if cells[0] != " " and (
+        check_marks(cells[0], cells[1], cells[2])
+        or check_marks(cells[0], cells[3], cells[6])
+        or check_marks(cells[0], cells[4], cells[8])
+    ):
+        return True
+    if cells[4] != " " and (
+        check_marks(cells[3], cells[4], cells[5])
+        or check_marks(cells[2], cells[4], cells[6])
+        or check_marks(cells[1], cells[4], cells[7])
+    ):
+        return True
+    if cells[8] != " " and (
+        check_marks(cells[6], cells[7], cells[8])
+        or check_marks(cells[2], cells[5], cells[8])
+    ):
+        return True
+    return False
+
+
+cells = create_cells()
+
+
+print(check_if_game_over())
 
 game_on = True
-while game_on:
-    input_cell(cells)
-    print_board(cells)
+# while game_on:
+#     input_cell(cells)
+#     print_board(cells)
