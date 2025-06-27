@@ -1,7 +1,11 @@
+class Player:
+    def __init__(self, name, sign):
+        self.name = name
+        self.sign = sign
+
+
 def create_cells():
-    created_cells = []
-    for _ in range(0, 9):
-        created_cells.append(" ")
+    created_cells = [" "] * 9
     return created_cells
 
 
@@ -50,12 +54,18 @@ def check_if_game_over():
     return False
 
 
+def next_turn(player):
+    
+    pass
+
+
 cells = create_cells()
+player1 = Player("Ari", "X")
+player2 = Player("Computer", "Y")
+print(player1.name, player1.sign)
 
-
-print(check_if_game_over())
 
 game_on = True
-# while game_on:
-#     input_cell(cells)
-#     print_board(cells)
+while game_on:
+    input_cell(cells)
+    print_board(cells)
